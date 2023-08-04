@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOOL CỦA TRUNG NÈ</title>
+    <style>
+        .TrungLH-input{
+            height: 50px;
+            width: 300px;
+        }
+        .TrungLH-label{
+            display: inline-block;
+            width: 150px;
+        }
+        .TrungLH-btn{
+            width: 150px;
+            height: 50px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">Tool của Trung nè</h2>
+    <div  style="display: flex;">
+        <div>
+            <div>
+                <label class="TrungLH-label" for="DoDaiMax">Nhập độ dài max</label>
+                <input class="TrungLH-input" type="number" name="" id="DoDaiMax">
+            </div>
+            <div>
+                <label class="TrungLH-label" for="NoiDung">Nhập nội dung</label>
+                <input class="TrungLH-input" type="text" name="" id="NoiDung">
+            </div>
+            <div style="display: flex; margin-left: 300px;">
+                <button class="TrungLH-btn" id="DemBtn">Render + Copy</button>
+    
+            </div>
+        </div>
+        <div>
+            <label for="NoiDung">Text Max</label>
+            <br>
+            <textarea name="" id="TextMax" cols="200" rows="10">
+    
+            </textarea>
+        </div>
+    </div>
+    <div style="display: flex;">
+        <textarea name="" id="TextKT" cols="70" rows="50" >
+            
+        </textarea>
+        <div style="display: inline-flex;">
+            <button id="KTBtn">Kiểm tra</button>
+            <button id="ABCBtn">So sánh</button>
+        </div>
+        <textarea name="" id="TextDC" cols="70" rows="50">
+            
+        </textarea>
+        <textarea name="" id="TextSL" cols="70" rows="50">
+    
+        </textarea>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#DemBtn').on('click',function(){
+                var DoDaiMax = $('#DoDaiMax').val();
+                var text = $('#NoiDung').val();
+                var DoDai = text.length;
+                let MangCanLayMax = text.split("")
+
+                let textMax="";
+
+                let dem=DoDaiMax;
+                for(let i=0; dem>0;i++){
+                    if(isCharacterInAscii(MangCanLayMax[i])){
+                        dem-=1;
+                    }
+                    else{
+                        dem-=2;
+                    }
+                    if(dem==0){
+                        textMax+=MangCanLayMax[i];
+                        break;
+                    } 
+                    if(dem<0){
+                        textMax+="0";
+                    }
+                    else{
+                        textMax+=MangCanLayMax[i]
+                        if(i==DoDai-1){
+                            i=-1;
+                        }
+                    }
+                }
+
+                $('#TextMax').val(textMax);
+
+                $('#TextMax').select();
+                document.execCommand('copy');
+            });
+
+            $('#KTBtn').on('click',function(){
+                let ND_KT = $('#TextKT').val().trim();
+                ND_KT = ND_KT.replace(/[\(\)\<\>,]/g, '');
+                ND_KT = ND_KT.replace(/\'/g, '');
+                
+                let mang_ND_KT = ND_KT.split("\n");
+                let mang_ND_KT2 = mang_ND_KT;
+
+                for(let i=0;i<mang_ND_KT.length;i++){
+                    let dem=0;
+                    let mang_ki_tu_kt=mang_ND_KT[i].split("");
+                    for(let j=0; j < mang_ki_tu_kt.length; j++){
+                        if(isCharacterInAscii(mang_ki_tu_kt[j])){
+                            dem+=1;
+                        }
+                        else{
+                            dem+=2;
+                        }
+                    }
+                    mang_ND_KT[i]=dem+"\t"+mang_ND_KT[i]+"\n";
+                }
+                $('#TextKT').val(mang_ND_KT);
+            });
+
+            $("#ABCBtn").on('click',function(){
+                // Loại bỏ các ký tự đặc biệt ',', '(', ')', '<', '>'
+                let cleanedData =$("#TextDC").val().trim();
+                $("#TextDC").val(cleanedData);
+                // Chuyển đoạn dữ liệu thành một mảng bằng cách tách dựa trên dấu ','
+                const dataArray = cleanedData.split('\n');
+                console.log(dataArray);
+                let newArr='';
+                for(let i=0;i<dataArray.length;i++){
+                    
+                    newArr+=dataArray[i]+"\n";
+                }
+                $('#TextSL').val(newArr);
+
+            })
+
+
+            function isCharacterInAscii(char) {
+                const charCode = char.charCodeAt(0);
+                return charCode >= 0 && charCode <= 127;
+            }
+        });
+    </script>
+</body>
+</html>
