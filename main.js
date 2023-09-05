@@ -81,10 +81,10 @@ $(document).ready(function () {
                         }
                     }
                 }
-                KqListMax+='\''+textMax+'\''+'\n';
+                KqListMax+=',\''+textMax+'\''+'\n';
             }
             else{
-                KqListMax+='\''+'xxx'+'\''+'\n';
+                KqListMax+=',\''+'xxx'+'\''+'\n';
             }
         }    
         $('#ListTextMax').val(KqListMax);
