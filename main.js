@@ -3,6 +3,7 @@ import * as LHTrung_func from "./function.js";
 $(document).ready(function () {
     init();
     $('#CreateMaxText').on('click', function(){
+        debugger
         LHTrung_func.CreateMaxText();
     }); 
     $('#KTBtn').on('click', function (){
