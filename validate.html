@@ -12,7 +12,7 @@
 <body>
     <div class="TrungLH-flex bg-pink flex-space">
         <div>
-            <a class="btn TrungLH-nav" href="./index.html">Index</a>
+            <a class="btn TrungLH-nav" href="./index.html">Max</a>
         </div>
         <h2 style="text-align: center;">Tool của Trung nè</h2>
     </div>
@@ -22,9 +22,21 @@
             <textarea class="w-100" name="" id="Conversion" cols="200" rows="10">
             </textarea>
             <button class="btn-dark" id="Validate">Validate to insert</button>
+            <button class="btn-light" id="Validate_script_table">Validate to Script with header and table name</button>
+        </div>
+        <div>
+            <label class="d-block">Nhập dữ liệu cần chuyển vị từ bảng thành cột</label>
+            <textarea class="w-100" name="" id="abc" cols="200" rows="10">
+            </textarea>
+            <button class="btn-dark" id="Validate">Validate to insert</button>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script type="module" src="./main_validate.js"></script>
+    <script>
+        $('#abc').on('input',function () { 
+            $('#abc').val($('#abc').val().split('\n'));
+        });
+    </script>
 </body>
 </html>
