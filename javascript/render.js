@@ -60,12 +60,16 @@ $(document).ready(function () {
                 let MangCanLayMax = text.split("");
                 let textMax="";
                 let dem=DoDaiMax;
-                for(let i=0; dem>0 || i==DoDaiBanDau;i++){
+                let demhaha=0;
+                for(let i=0; dem>0 && demhaha<DoDaiBanDau;i++){
+                    
                     if(LHTrung_func.isCharacterInAscii(MangCanLayMax[i])){
                         dem-=1;
+                        demhaha++;
                     }
                     else{
                         dem-=2;
+                        demhaha+=2;
                     }
                     if(dem==0){
                         textMax+=MangCanLayMax[i];

@@ -84,7 +84,7 @@ $(document).ready(function () {
                 KqListMax+=',\''+textMax+'\''+'\n';
             }
             else{
-                KqListMax+=',\''+'xxx'+'\''+'\n';
+                KqListMax+=',\''+Math.floor(Math.random() * 110)+'\''+'\n';
             }
         }    
         $('#ListTextMax').val(KqListMax);
