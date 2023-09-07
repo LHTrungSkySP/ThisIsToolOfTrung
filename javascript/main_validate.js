@@ -12,10 +12,6 @@ $(document).ready(function () {
             let kq = "";
             let i = 0;
             for (; i < textArray.length-1; i++) {
-                for (; i < textArray.length-1; i++) {
-            for (; i < textArray.length-1; i++) {
-
-
                 if (textArray[i] != "") {
                     kq += textArray[i] + "\n";
                 }
