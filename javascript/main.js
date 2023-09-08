@@ -72,7 +72,7 @@ $(document).ready(function () {
                         break;
                     } 
                     if(dem<0){
-                        textMax+="0";
+                        textMax+=Math.floor(Math.random() * 10);
                     }
                     else{
                         textMax+=MangCanLayMax[i]

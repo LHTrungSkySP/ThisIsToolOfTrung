@@ -61,27 +61,30 @@ $(document).ready(function () {
                 let textMax="";
                 let dem=DoDaiMax;
                 let demhaha=0;
-                for(let i=0; dem>0 && demhaha<DoDaiBanDau;i++){
+                for(let i=0; dem>0;i++){
                     
                     if(LHTrung_func.isCharacterInAscii(MangCanLayMax[i])){
+                        // chiếm 1 varchar
                         dem-=1;
                         demhaha++;
                     }
                     else{
+                        // ký tự chiếm 2 varchar
                         dem-=2;
                         demhaha+=2;
                     }
                     if(dem==0){
+                        // đã đủ
                         textMax+=MangCanLayMax[i];
                         break;
                     } 
-                    if(dem<0){
-                        textMax+="0";
+                    else if(dem<0){
+                        textMax+=Math.floor(Math.random() * 10);
                     }
                     else{
                         textMax+=MangCanLayMax[i]
                         if(i==DoDaiBanDau-1){
-                            i=-1;
+                            break;
                         }
                     }
                 }
